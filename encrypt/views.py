@@ -18,11 +18,11 @@ def cipher(request):
     num = int(request.POST.get("num"))
     
     num = num if num > 0 else num*(-1)
-
-    if c_to == "encrypt":
-      opt = encrypt(phrase, key_phrase, num)
-    else:
-      opt = decrypt(phrase, key_phrase, num)
+    if len(key_phrase) % num == 0:
+      if c_to == "encrypt":
+        opt = encrypt(phrase, key_phrase, num)
+      else:
+        opt = decrypt(phrase, key_phrase, num)
 
   return render(request, 'index.html',{"output": opt})
 
